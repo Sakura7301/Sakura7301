@@ -1,10 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="880" height="192" viewBox="0 0 880 192" role="img">
 <defs>
 <linearGradient id="panelBg" x1="0" y1="0" x2="1" y2="1">
-<stop offset="0" stop-color="#0A0C0E"/>
-<stop offset="1" stop-color="#07080A"/>
+<stop offset="0" stop-color="#1C2025"/>
+<stop offset="1" stop-color="#14171B"/>
 </linearGradient>
 <clipPath id="frame"><rect x="0" y="0" width="880" height="192" rx="16"/></clipPath>
+<radialGradient id="panelLight" cx="0.1" cy="0" r="1.1">
+<stop offset="0" stop-color="#F5F0E5" stop-opacity="0.055"/>
+<stop offset="0.65" stop-color="#F5F0E5" stop-opacity="0.012"/>
+<stop offset="1" stop-color="#F5F0E5" stop-opacity="0"/>
+</radialGradient>
 
 </defs>
 <style><![CDATA[
@@ -12,28 +17,29 @@
 ]]></style>
 <g clip-path="url(#frame)">
 <rect width="880" height="192" fill="url(#panelBg)"/>
+<rect width="880" height="192" fill="url(#panelLight)"/>
 
-<text x="24" y="28" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="9.5" letter-spacing="2" fill="#6A6963">TECH STACK · 技术栈</text>
-<text x="856" y="28" text-anchor="end" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="9" letter-spacing="1.2" fill="#53524D">长期使用 &amp; 正在折腾</text>
-<text x="24" y="69" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="9" letter-spacing="1.6" fill="#6A6963">LANG</text>
-<rect x="104" y="52" width="73" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="119.5" cy="65" r="2.6" fill="#CFD2D6"/><text x="128" y="68.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#CFCBBF">Python</text>
-<rect x="187" y="52" width="43" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="202.5" cy="65" r="2.6" fill="#CFD2D6"/><text x="211" y="68.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#CFCBBF">C</text>
-<rect x="240" y="52" width="55" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="255.5" cy="65" r="2.6" fill="#CFD2D6"/><text x="264" y="68.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#CFCBBF">C++</text>
-<rect x="305" y="52" width="85" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="320.5" cy="65" r="2.6" fill="#CFD2D6"/><text x="329" y="68.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#CFCBBF">Assembly</text>
-<rect x="400" y="52" width="96" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="415.5" cy="65" r="2.6" fill="#CFD2D6"/><text x="424" y="68.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#CFCBBF">JavaScript</text>
-<rect x="506" y="52" width="96" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="521.5" cy="65" r="2.6" fill="#CFD2D6"/><text x="530" y="68.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#CFCBBF">TypeScript</text>
-<text x="24" y="115" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="9" letter-spacing="1.6" fill="#6A6963">TOOLBOX</text>
-<rect x="104" y="98" width="67" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="119.5" cy="111" r="2.6" fill="#8E959B"/><text x="128" y="114.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#CFCBBF">Linux</text>
-<rect x="181" y="98" width="55" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="196.5" cy="111" r="2.6" fill="#8E959B"/><text x="205" y="114.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#CFCBBF">Git</text>
-<rect x="246" y="98" width="61" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="261.5" cy="111" r="2.6" fill="#8E959B"/><text x="270" y="114.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#CFCBBF">MQTT</text>
-<rect x="317" y="98" width="55" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="332.5" cy="111" r="2.6" fill="#8E959B"/><text x="341" y="114.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#CFCBBF">TLS</text>
-<rect x="382" y="98" width="102" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="397.5" cy="111" r="2.6" fill="#8E959B"/><text x="406" y="114.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#CFCBBF">Agent × LLM</text>
-<rect x="494" y="98" width="79" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="509.5" cy="111" r="2.6" fill="#8E959B"/><text x="518" y="114.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#CFCBBF">插件架构</text>
-<text x="24" y="161" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="9" letter-spacing="1.6" fill="#6A6963">FOCUS</text>
-<rect x="104" y="144" width="103" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="119.5" cy="157" r="2.6" fill="#D9806A"/><text x="128" y="160.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#CFCBBF">DSH 插件生态</text>
-<rect x="217" y="144" width="104" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="232.5" cy="157" r="2.6" fill="#D9806A"/><text x="241" y="160.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#CFCBBF">Agent 工程化</text>
-<rect x="331" y="144" width="97" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="346.5" cy="157" r="2.6" fill="#D9806A"/><text x="355" y="160.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#CFCBBF">协议 · 性能</text>
+<text x="24" y="28" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="9.5" letter-spacing="2" fill="#88857C">TECH STACK · 技术栈</text>
+<text x="856" y="28" text-anchor="end" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="9" letter-spacing="1.2" fill="#6E6B63">长期使用 &amp; 正在折腾</text>
+<text x="24" y="69" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="9" letter-spacing="1.6" fill="#88857C">LANG</text>
+<rect x="104" y="52" width="73" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="119.5" cy="65" r="2.6" fill="#DEE2E6"/><text x="128" y="68.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">Python</text>
+<rect x="187" y="52" width="43" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="202.5" cy="65" r="2.6" fill="#DEE2E6"/><text x="211" y="68.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">C</text>
+<rect x="240" y="52" width="55" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="255.5" cy="65" r="2.6" fill="#DEE2E6"/><text x="264" y="68.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">C++</text>
+<rect x="305" y="52" width="85" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="320.5" cy="65" r="2.6" fill="#DEE2E6"/><text x="329" y="68.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">Assembly</text>
+<rect x="400" y="52" width="96" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="415.5" cy="65" r="2.6" fill="#DEE2E6"/><text x="424" y="68.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">JavaScript</text>
+<rect x="506" y="52" width="96" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="521.5" cy="65" r="2.6" fill="#DEE2E6"/><text x="530" y="68.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">TypeScript</text>
+<text x="24" y="115" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="9" letter-spacing="1.6" fill="#88857C">TOOLBOX</text>
+<rect x="104" y="98" width="67" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="119.5" cy="111" r="2.6" fill="#ADB4BA"/><text x="128" y="114.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">Linux</text>
+<rect x="181" y="98" width="55" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="196.5" cy="111" r="2.6" fill="#ADB4BA"/><text x="205" y="114.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">Git</text>
+<rect x="246" y="98" width="61" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="261.5" cy="111" r="2.6" fill="#ADB4BA"/><text x="270" y="114.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">MQTT</text>
+<rect x="317" y="98" width="55" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="332.5" cy="111" r="2.6" fill="#ADB4BA"/><text x="341" y="114.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">TLS</text>
+<rect x="382" y="98" width="102" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="397.5" cy="111" r="2.6" fill="#ADB4BA"/><text x="406" y="114.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">Agent × LLM</text>
+<rect x="494" y="98" width="79" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="509.5" cy="111" r="2.6" fill="#ADB4BA"/><text x="518" y="114.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">插件架构</text>
+<text x="24" y="161" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="9" letter-spacing="1.6" fill="#88857C">FOCUS</text>
+<rect x="104" y="144" width="103" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="119.5" cy="157" r="2.6" fill="#E28B74"/><text x="128" y="160.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">DSH 插件生态</text>
+<rect x="217" y="144" width="104" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="232.5" cy="157" r="2.6" fill="#E28B74"/><text x="241" y="160.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">Agent 工程化</text>
+<rect x="331" y="144" width="97" height="26" rx="13" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="346.5" cy="157" r="2.6" fill="#E28B74"/><text x="355" y="160.7" font-size="10.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">协议 · 性能</text>
 
-<rect x="0.5" y="0.5" width="879" height="191" rx="16" fill="none" stroke="rgba(255,255,255,0.07)"/>
+<rect x="0.5" y="0.5" width="879" height="191" rx="16" fill="none" stroke="rgba(255,255,255,0.10)"/>
 </g>
 </svg>

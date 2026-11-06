@@ -31,29 +31,29 @@ const USER = 'Sakura7301';
  * 配色 / 字体
  * ------------------------------------------------------------------ */
 const C = {
-  bg0: '#07080A',
-  bg1: '#0A0C0E',
-  panel: '#0D0F12',
-  line: '#242A2F',
-  text: '#E9E5DA',       // 宣纸白
-  sub: '#CFCBBF',
-  muted: '#8B8A83',
-  dim: '#6A6963',
-  faint: '#53524D',
-  silver: '#CFD2D6',
-  silverDim: '#8E959B',
-  ink1: '#141A1E',
-  ink2: '#1E252A',
-  ink3: '#2C3439',
-  cinnabar: '#B8402B',   // 朱砂（只做印章 / 少量点缀）
-  cinnabarSoft: '#D9806A',
-  paper: '#EFE9DB',
+  bg0: '#14171B',       // 雾灰墨（比纯黑亮一档）
+  bg1: '#1C2025',
+  panel: '#1A1D22',
+  line: '#3A4046',
+  text: '#F3EFE4',       // 宣纸白
+  sub: '#DAD5C8',
+  muted: '#ABA89E',
+  dim: '#88857C',
+  faint: '#6E6B63',
+  silver: '#DEE2E6',
+  silverDim: '#ADB4BA',
+  ink1: '#24282D',
+  ink2: '#2F353B',
+  ink3: '#495157',
+  cinnabar: '#C2492F',   // 朱砂（只做印章 / 少量点缀）
+  cinnabarSoft: '#E28B74',
+  paper: '#F5F0E5',
 };
 const F = {
   sans: "'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif",
   mono: "'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace",
 };
-const BAR_COLORS = ['#D9D3C4', '#A7ADB2', '#7A848A', '#4E585E', '#2F373C']; // 墨分五色
+const BAR_COLORS = ['#EDE9DE', '#C3C9CE', '#959DA4', '#6C747C', '#4B535A']; // 墨分五色
 
 /* ------------------------------------------------------------------ *
  * 数据快照（2026-11-06 抓取）。--fetch 时会自动更新。
@@ -172,6 +172,11 @@ function frame({ w, h, rx = 16, inner, defs = '', style = '', bg = 'url(#panelBg
 <stop offset="1" stop-color="${C.bg0}"/>
 </linearGradient>
 <clipPath id="frame"><rect x="0" y="0" width="${w}" height="${h}" rx="${rx}"/></clipPath>
+<radialGradient id="panelLight" cx="0.1" cy="0" r="1.1">
+<stop offset="0" stop-color="#F5F0E5" stop-opacity="0.055"/>
+<stop offset="0.65" stop-color="#F5F0E5" stop-opacity="0.012"/>
+<stop offset="1" stop-color="#F5F0E5" stop-opacity="0"/>
+</radialGradient>
 ${defs}
 </defs>
 <style><![CDATA[
@@ -179,8 +184,9 @@ ${style}
 ]]></style>
 <g clip-path="url(#frame)">
 <rect width="${w}" height="${h}" fill="${bg}"/>
+<rect width="${w}" height="${h}" fill="url(#panelLight)"/>
 ${inner}
-<rect x="0.5" y="0.5" width="${w - 1}" height="${h - 1}" rx="${rx}" fill="none" stroke="rgba(255,255,255,0.07)"/>
+<rect x="0.5" y="0.5" width="${w - 1}" height="${h - 1}" rx="${rx}" fill="none" stroke="rgba(255,255,255,0.10)"/>
 </g>
 </svg>`;
 }
@@ -194,46 +200,16 @@ function avatarDataUri() {
   return '';
 }
 
-/* ------------------------------------------------------------------ *
- * 局部：八卦细环
- * ------------------------------------------------------------------ */
-const TRI_BITS = [
-  [1, 1, 1], [0, 1, 1], [1, 0, 1], [0, 0, 1], // 乾 兑 离 震
-  [1, 1, 0], [0, 1, 0], [1, 0, 0], [0, 0, 0], // 巽 坎 艮 坤
-];
-
-function trigramRing(cx, cy, radius, { color = C.silver, size = 13, gap = 1.3 } = {}) {
-  const bars = TRI_BITS.map((bits, k) => {
-    const ang = ((-90 + k * 45) * Math.PI) / 180;
-    const px = cx + radius * Math.cos(ang);
-    const py = cy + radius * Math.sin(ang);
-    const half = size / 2;
-    const draw = bits.map((solid, j) => {
-      const yy = (j - 1) * (gap + 1.6);
-      const y = (yy - 0.8).toFixed(2);
-      if (solid) {
-        return `<rect x="${-half}" y="${y}" width="${size}" height="1.6" rx="0.8" fill="${color}"/>`;
-      }
-      const seg = (size - 3) / 2;
-      return `<rect x="${-half}" y="${y}" width="${seg}" height="1.6" rx="0.8" fill="${color}"/><rect x="${(3 - half).toFixed(2)}" y="${y}" width="${seg}" height="1.6" rx="0.8" fill="${color}"/>`;
-    }).join('');
-    return `<g transform="translate(${px.toFixed(2)} ${py.toFixed(2)}) rotate(${k * 45})" opacity="0.55">${draw}</g>`;
-  }).join('\n    ');
-  return `<g><animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="360 ${cx} ${cy}" dur="240s" repeatCount="indefinite"/>
-    ${bars}
-  </g>`;
-}
-
 /** 局部：远山与云雾 */
 function landscape(W, H) {
   const farTop = 'M0 340 L0 316 C 110 308 190 298 270 300 C 350 302 420 290 500 284 C 580 278 640 290 710 294 C 780 298 832 288 880 284';
   const nearTop = 'M0 340 L0 330 C 90 324 170 316 250 318 C 340 320 420 310 500 306 C 580 302 650 312 720 314 C 790 316 844 308 880 306';
   return `
 <g mask="url(#mtnMask)">
-  <path d="${farTop} L880 340 Z" fill="#121820" opacity="0.9"/>
-  <path d="${nearTop} L880 340 Z" fill="#0A0D10"/>
-  <path d="${farTop}" fill="none" stroke="rgba(220,226,232,0.10)" stroke-width="0.9"/>
-  <path d="${nearTop}" fill="none" stroke="rgba(220,226,232,0.06)" stroke-width="0.8"/>
+  <path d="${farTop} L880 340 Z" fill="#2C343B" opacity="0.95"/>
+  <path d="${nearTop} L880 340 Z" fill="#171A1E"/>
+  <path d="${farTop}" fill="none" stroke="rgba(243,239,228,0.20)" stroke-width="0.9"/>
+  <path d="${nearTop}" fill="none" stroke="rgba(243,239,228,0.12)" stroke-width="0.8"/>
   <ellipse cx="660" cy="306" rx="250" ry="24" fill="url(#mistGlow)"/>
   <ellipse cx="430" cy="316" rx="180" ry="18" fill="url(#mistGlow)"/>
 </g>`;
@@ -244,18 +220,18 @@ function landscape(W, H) {
  * ------------------------------------------------------------------ */
 function buildHero(d) {
   const W = 880, H = 340;
-  const av = { x: 708, y: 170, r: 80 };
+  const av = { x: 116, y: 194, r: 74 };
   const R = rng(20201106);
   const avatar = avatarDataUri();
 
   // 北斗七星（银白细星）
-  const bowl = [[302, 40], [338, 30], [352, 62], [318, 74]];
-  const handle = [[388, 66], [426, 52], [462, 38]];
+  const bowl = [[302, 54], [338, 44], [352, 76], [318, 88]];
+  const handle = [[388, 80], [426, 66], [462, 52]];
   const segs = [
     [bowl[0], bowl[1]], [bowl[1], bowl[2]], [bowl[2], bowl[3]], [bowl[3], bowl[0]],
     [bowl[3], handle[0]], [handle[0], handle[1]], [handle[1], handle[2]],
   ];
-  const dipperLines = segs.map(([a, b]) => `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="rgba(220,226,232,0.14)" stroke-width="0.9" stroke-linecap="round"/>`).join('');
+  const dipperLines = segs.map(([a, b]) => `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="rgba(243,239,228,0.20)" stroke-width="0.9" stroke-linecap="round"/>`).join('');
   const dipperStars = [...bowl, ...handle].map(([x, y], i) => `<circle cx="${x}" cy="${y}" r="${i < 4 ? 1.9 : 1.5}" fill="${C.silver}" style="animation:twinkle ${(3 + i * 0.35).toFixed(1)}s ease-in-out infinite;animation-delay:-${(i * 0.7).toFixed(1)}s"/>`).join('');
 
   // 墨屑 / 飞白
@@ -270,38 +246,44 @@ function buildHero(d) {
     dust += `<circle cx="${x}" cy="${y}" r="${r}" fill="${C.paper}" style="animation:drift ${dur}s ease-in-out infinite;animation-delay:-${del}s" opacity="${op}"/>\n`;
   }
 
+  // 飞鸟：几笔淡墨
+  const birds = `<g stroke="rgba(243,239,228,0.50)" stroke-width="1" fill="none" stroke-linecap="round">
+  <path d="M566 118 C 571 111 577 111 582 117 C 587 111 593 111 598 118"/>
+  <path d="M608 96 C 612 90 617 90 621 95 C 625 90 630 90 634 96"/>
+  <path d="M586 140 C 589 136 592 136 595 139 C 598 136 601 136 604 140"/>
+</g>`;
+
   const pills = [];
-  let px = 58;
+  let px = 218;
   for (const it of [
     { label: 'DSH 插件作者', dot: C.cinnabarSoft },
     { label: '底层 · 系统', dot: C.silverDim },
     { label: 'Agent × LLM', dot: C.silverDim },
   ]) {
-    const p = pill(px, 276, it.label, { dot: it.dot, h: 24, fs: 10 });
+    const p = pill(px, 292, it.label, { dot: it.dot, h: 24, fs: 10 });
     pills.push(p.svg);
     px += p.width + 9;
   }
 
   const collab = pill(0, 22, 'OPEN TO COLLAB', {
-    dot: C.silver, h: 23, fs: 8.5, fill: 'rgba(255,255,255,0.03)', stroke: 'rgba(255,255,255,0.14)', color: C.sub,
+    dot: C.silver, h: 23, fs: 8.5, fill: 'rgba(255,255,255,0.05)', stroke: 'rgba(255,255,255,0.18)', color: C.sub,
   });
   const collabX = W - 24 - collab.width;
 
-  // 飞鸟：几笔淡墨，增加"空山"的意境
-  const birds = `<g stroke="rgba(233,229,218,0.40)" stroke-width="1" fill="none" stroke-linecap="round">
-  <path d="M508 114 C 513 107 519 107 524 113 C 529 107 535 107 540 114"/>
-  <path d="M556 94 C 560 88 565 88 569 93 C 573 88 578 88 582 94"/>
-  <path d="M534 134 C 537 130 540 130 543 133 C 546 130 549 130 552 134"/>
-</g>`;
-
   const inner = `
 <g class="wash">
-  <ellipse class="au a1" cx="790" cy="30" rx="250" ry="160" fill="url(#washCool)"/>
-  <ellipse class="au a2" cx="120" cy="320" rx="240" ry="150" fill="url(#washWarm)"/>
-  <ellipse class="au a3" cx="420" cy="140" rx="260" ry="160" fill="url(#washInk)"/>
+  <ellipse class="au a1" cx="820" cy="20" rx="240" ry="150" fill="url(#washCool)"/>
+  <ellipse class="au a2" cx="150" cy="330" rx="240" ry="150" fill="url(#washWarm)"/>
+  <ellipse class="au a3" cx="500" cy="150" rx="280" ry="170" fill="url(#washInk)"/>
 </g>
 <rect width="${W}" height="${H}" fill="url(#grain)" opacity="0.6"/>
 <rect width="${W}" height="${H}" fill="url(#vignette)"/>
+
+<g>
+  <circle cx="800" cy="104" r="86" fill="url(#moonHalo)"/>
+  <circle cx="800" cy="104" r="44" fill="url(#moonDisc)"/>
+  <circle cx="800" cy="104" r="44" fill="none" stroke="rgba(243,239,228,0.16)" stroke-width="0.8"/>
+</g>
 
 ${dipperLines}
 ${dipperStars}
@@ -309,36 +291,33 @@ ${dipperStars}
 ${birds}
 ${landscape(W, H)}
 
-<g class="portrait">
-  <circle cx="${av.x}" cy="${av.y}" r="150" fill="url(#moonHalo)"/>
-  ${trigramRing(av.x, av.y, 114, { size: 15 })}
+<g>
+  <circle cx="${av.x}" cy="${av.y}" r="118" fill="url(#avHalo)"/>
   ${avatar ? `<image x="${av.x - av.r}" y="${av.y - av.r}" width="${av.r * 2}" height="${av.r * 2}" href="${avatar}" preserveAspectRatio="xMidYMid slice" clip-path="url(#avClip)"/>` : ''}
   <circle cx="${av.x}" cy="${av.y}" r="${av.r}" fill="url(#avVig)"/>
-  <circle cx="${av.x}" cy="${av.y}" r="${av.r}" fill="none" stroke="rgba(239,233,219,0.55)" stroke-width="1.3"/>
-  <circle cx="${av.x}" cy="${av.y}" r="${av.r + 9}" fill="none" stroke="rgba(239,233,219,0.16)" stroke-width="1"/>
-  <circle cx="${av.x}" cy="${av.y}" r="${av.r + 22}" fill="none" stroke="rgba(239,233,219,0.09)" stroke-width="0.9" stroke-dasharray="2 8"/>
+  <circle cx="${av.x}" cy="${av.y}" r="${av.r}" fill="none" stroke="rgba(243,239,228,0.55)" stroke-width="1.3"/>
+  <circle cx="${av.x}" cy="${av.y}" r="${av.r + 8}" fill="none" stroke="rgba(243,239,228,0.16)" stroke-width="1"/>
 </g>
 
 <g>
-  <text x="58" y="84" font-family="${F.mono}" font-size="9.5" letter-spacing="3.6" fill="${C.dim}">SAKURA7301  ·  SHANGHAI  ·  CN</text>
-  <text class="name" x="54" y="164" font-family="${F.sans}" font-size="76" font-weight="800" fill="url(#nameGrad)" letter-spacing="4">${esc(d.user.name)}</text>
-  <g transform="translate(232 108) rotate(-4)">
-    <rect width="23" height="49" rx="2" fill="${C.cinnabar}"/>
-    <rect x="2.6" y="2.6" width="17.8" height="43.8" rx="1" fill="none" stroke="#F3E6D2" stroke-opacity="0.45" stroke-width="0.8"/>
-    <text x="11.5" y="15" text-anchor="middle" font-family="${F.sans}" font-size="10" font-weight="700" fill="#F7EDDC">人</text>
-    <text x="11.5" y="28" text-anchor="middle" font-family="${F.sans}" font-size="10" font-weight="700" fill="#F7EDDC">间</text>
-    <text x="11.5" y="41" text-anchor="middle" font-family="${F.sans}" font-size="10" font-weight="700" fill="#F7EDDC">世</text>
+  <text x="218" y="116" font-family="${F.mono}" font-size="9.5" letter-spacing="3.4" fill="${C.dim}">SAKURA7301  ·  SHANGHAI  ·  CN</text>
+  <text class="name" x="214" y="194" font-family="${F.sans}" font-size="72" font-weight="800" fill="url(#nameGrad)" letter-spacing="4">${esc(d.user.name)}</text>
+  <g transform="translate(378 150) rotate(-4)">
+    <rect width="22" height="48" rx="2" fill="${C.cinnabar}"/>
+    <rect x="2.5" y="2.5" width="17" height="43" rx="1" fill="none" stroke="#F3E6D2" stroke-opacity="0.45" stroke-width="0.8"/>
+    <text x="11" y="15" text-anchor="middle" font-family="${F.sans}" font-size="9.5" font-weight="700" fill="#F7EDDC">人</text>
+    <text x="11" y="28" text-anchor="middle" font-family="${F.sans}" font-size="9.5" font-weight="700" fill="#F7EDDC">间</text>
+    <text x="11" y="41" text-anchor="middle" font-family="${F.sans}" font-size="9.5" font-weight="700" fill="#F7EDDC">世</text>
   </g>
-  <text x="58" y="198" font-family="${F.mono}" font-size="13" letter-spacing="10.5" fill="${C.silverDim}">XUAN AN</text>
-  <text x="58" y="238" font-family="${F.sans}" font-size="19" fill="${C.text}" letter-spacing="0.8">知其不可奈何，而安之若命</text>
-  <text x="58" y="256" font-family="${F.mono}" font-size="9" letter-spacing="1.6" fill="${C.dim}">— 庄子 · 人间世</text>
+  <text x="218" y="222" font-family="${F.mono}" font-size="13" letter-spacing="10.5" fill="${C.silverDim}">XUAN AN</text>
+  <text x="218" y="258" font-family="${F.sans}" font-size="18" fill="${C.text}" letter-spacing="0.8">知其不可奈何，而安之若命</text>
+  <text x="218" y="276" font-family="${F.mono}" font-size="9" letter-spacing="1.6" fill="${C.dim}">— 庄子 · 人间世</text>
   ${pills.join('\n  ')}
 </g>
 
 <g transform="translate(${collabX} 0)">${collab.svg}</g>
 
-
-<g stroke="rgba(239,233,219,0.22)" stroke-width="1.1" fill="none" stroke-linecap="round">
+<g stroke="rgba(243,239,228,0.30)" stroke-width="1.1" fill="none" stroke-linecap="round">
   <path d="M17 34 V17 H34"/>
   <path d="M863 34 V17 H846"/>
   <path d="M17 306 V323 H34"/>
@@ -349,23 +328,25 @@ ${landscape(W, H)}
 
   const defs = `
 <linearGradient id="nameGrad" x1="0" y1="0" x2="1" y2="1">
-  <stop offset="0" stop-color="#F4F0E6"/>
-  <stop offset="0.55" stop-color="#DDD7C8"/>
-  <stop offset="1" stop-color="#A9A496"/>
+  <stop offset="0" stop-color="#FBF7EC"/>
+  <stop offset="0.55" stop-color="#E6E0D0"/>
+  <stop offset="1" stop-color="#B9B4A6"/>
 </linearGradient>
 <clipPath id="avClip"><circle cx="${av.x}" cy="${av.y}" r="${av.r}"/></clipPath>
-<radialGradient id="moonHalo"><stop offset="0" stop-color="#E9E5DA" stop-opacity="0.16"/><stop offset="0.55" stop-color="#E9E5DA" stop-opacity="0.05"/><stop offset="1" stop-color="#E9E5DA" stop-opacity="0"/></radialGradient>
+<radialGradient id="avHalo"><stop offset="0" stop-color="#F5F0E5" stop-opacity="0.20"/><stop offset="0.55" stop-color="#F5F0E5" stop-opacity="0.06"/><stop offset="1" stop-color="#F5F0E5" stop-opacity="0"/></radialGradient>
 <radialGradient id="avVig" cx="0.5" cy="0.5" r="0.5">
-  <stop offset="0.62" stop-color="#07080A" stop-opacity="0"/>
-  <stop offset="1" stop-color="#07080A" stop-opacity="0.66"/>
+  <stop offset="0.64" stop-color="#14171B" stop-opacity="0"/>
+  <stop offset="1" stop-color="#14171B" stop-opacity="0.45"/>
 </radialGradient>
-<radialGradient id="washCool"><stop offset="0" stop-color="#16222C" stop-opacity="0.85"/><stop offset="1" stop-color="#16222C" stop-opacity="0"/></radialGradient>
-<radialGradient id="washWarm"><stop offset="0" stop-color="#221E18" stop-opacity="0.7"/><stop offset="1" stop-color="#221E18" stop-opacity="0"/></radialGradient>
-<radialGradient id="washInk"><stop offset="0" stop-color="#121820" stop-opacity="0.9"/><stop offset="1" stop-color="#121820" stop-opacity="0"/></radialGradient>
-<radialGradient id="mistGlow"><stop offset="0" stop-color="#B9C2C9" stop-opacity="0.10"/><stop offset="1" stop-color="#B9C2C9" stop-opacity="0"/></radialGradient>
+<radialGradient id="moonDisc"><stop offset="0" stop-color="#F5F0E5" stop-opacity="0.16"/><stop offset="0.75" stop-color="#F5F0E5" stop-opacity="0.06"/><stop offset="1" stop-color="#F5F0E5" stop-opacity="0.02"/></radialGradient>
+<radialGradient id="moonHalo"><stop offset="0" stop-color="#F5F0E5" stop-opacity="0.10"/><stop offset="1" stop-color="#F5F0E5" stop-opacity="0"/></radialGradient>
+<radialGradient id="washCool"><stop offset="0" stop-color="#3A4A57" stop-opacity="0.55"/><stop offset="1" stop-color="#3A4A57" stop-opacity="0"/></radialGradient>
+<radialGradient id="washWarm"><stop offset="0" stop-color="#3A3226" stop-opacity="0.45"/><stop offset="1" stop-color="#3A3226" stop-opacity="0"/></radialGradient>
+<radialGradient id="washInk"><stop offset="0" stop-color="#2A323A" stop-opacity="0.55"/><stop offset="1" stop-color="#2A323A" stop-opacity="0"/></radialGradient>
+<radialGradient id="mistGlow"><stop offset="0" stop-color="#CBD1D6" stop-opacity="0.18"/><stop offset="1" stop-color="#CBD1D6" stop-opacity="0"/></radialGradient>
 <radialGradient id="vignette" cx="0.5" cy="0.5" r="0.78">
   <stop offset="0.4" stop-color="${C.bg0}" stop-opacity="0"/>
-  <stop offset="1" stop-color="${C.bg0}" stop-opacity="0.8"/>
+  <stop offset="1" stop-color="${C.bg0}" stop-opacity="0.55"/>
 </radialGradient>
 <linearGradient id="mtnMaskG" x1="0" y1="0" x2="1" y2="0">
   <stop offset="0.30" stop-color="#000"/>
@@ -373,10 +354,10 @@ ${landscape(W, H)}
 </linearGradient>
 <mask id="mtnMask"><rect width="${W}" height="${H}" fill="url(#mtnMaskG)"/></mask>
 <linearGradient id="barGrad" x1="0" y1="0" x2="1" y2="0">
-  <stop offset="0" stop-color="#E9E5DA" stop-opacity="0"/>
-  <stop offset="0.4" stop-color="#E9E5DA" stop-opacity="0.55"/>
-  <stop offset="0.72" stop-color="#B8402B" stop-opacity="0.75"/>
-  <stop offset="1" stop-color="#B8402B" stop-opacity="0"/>
+  <stop offset="0" stop-color="#F5F0E5" stop-opacity="0"/>
+  <stop offset="0.4" stop-color="#F5F0E5" stop-opacity="0.6"/>
+  <stop offset="0.72" stop-color="#C2492F" stop-opacity="0.8"/>
+  <stop offset="1" stop-color="#C2492F" stop-opacity="0"/>
 </linearGradient>
 <pattern id="grain" width="24" height="24" patternUnits="userSpaceOnUse">
   <circle cx="1" cy="1" r="0.8" fill="${C.paper}" opacity="0.06"/>
@@ -393,13 +374,13 @@ ${landscape(W, H)}
 .a1{animation:wash1 22s ease-in-out infinite}
 .a2{animation:wash2 26s ease-in-out infinite}
 .a3{animation:wash3 19s ease-in-out infinite}
-.name{filter:drop-shadow(0 0 18px rgba(233,229,218,0.16))}
+.name{filter:drop-shadow(0 0 18px rgba(243,239,228,0.16))}
 `;
 
   return frame({
     w: W, h: H, inner, defs, style, rx: 18,
     bg: 'url(#heroBg)',
-  }).replace('</defs>', `<linearGradient id="heroBg" x1="0" y1="0" x2="0.9" y2="1"><stop offset="0" stop-color="#08090B"/><stop offset="0.55" stop-color="#060708"/><stop offset="1" stop-color="#080A0C"/></linearGradient></defs>`);
+  }).replace('</defs>', '<linearGradient id="heroBg" x1="0" y1="0" x2="0.9" y2="1"><stop offset="0" stop-color="#262C34"/><stop offset="0.55" stop-color="#1A1E23"/><stop offset="1" stop-color="#171A1E"/></linearGradient></defs>');
 }
 
 /* ------------------------------------------------------------------ *
@@ -421,7 +402,7 @@ function buildDashboard(d) {
     const x = 24 + (i % 2) * 210;
     const y = 62 + Math.floor(i / 2) * 92;
     return `<g>
-  <rect x="${x}" y="${y}" width="198" height="80" rx="12" fill="rgba(255,255,255,0.022)" stroke="rgba(255,255,255,0.07)"/>
+  <rect x="${x}" y="${y}" width="198" height="80" rx="12" fill="rgba(255,255,255,0.035)" stroke="rgba(255,255,255,0.10)"/>
   <text x="${x + 18}" y="${y + 40}" font-family="${F.sans}" font-size="27" font-weight="800" fill="url(#numGrad)">${s.v}</text>
   <text x="${x + 18}" y="${y + 62}" font-family="${F.mono}" font-size="8.5" letter-spacing="1.1" fill="${C.muted}">${esc(s.label)}</text>
 </g>`;
@@ -433,7 +414,7 @@ function buildDashboard(d) {
     const col = BAR_COLORS[i % BAR_COLORS.length];
     return `<g>
   <text x="456" y="${y + 12}" font-family="${F.sans}" font-size="11" fill="${C.text}">${esc(l.name)}</text>
-  <rect x="536" y="${y + 4}" width="250" height="8" rx="4" fill="rgba(255,255,255,0.045)"/>
+  <rect x="536" y="${y + 4}" width="250" height="8" rx="4" fill="rgba(255,255,255,0.07)"/>
   <rect x="536" y="${y + 4}" width="${w.toFixed(1)}" height="8" rx="4" fill="${col}" opacity="0.9"/>
   <text x="856" y="${y + 12}" text-anchor="end" font-family="${F.mono}" font-size="9.5" fill="${C.muted}">${pct(l.bytes).toFixed(1)}%</text>
 </g>`;
@@ -444,7 +425,7 @@ function buildDashboard(d) {
   <circle cx="26" cy="26" r="3.4" fill="${C.cinnabar}" opacity="0.85"/><circle cx="40" cy="26" r="3.4" fill="${C.silver}" opacity="0.65"/><circle cx="54" cy="26" r="3.4" fill="${C.ink3}"/>
   <text x="70" y="30" font-family="${F.mono}" font-size="10" letter-spacing="1.4" fill="${C.dim}">github · stats snapshot</text>
   <text x="${W - 24}" y="30" text-anchor="end" font-family="${F.mono}" font-size="9" letter-spacing="1.2" fill="${C.faint}">SYNC ${esc(d.updatedAt)}</text>
-  <line x1="24" y1="48" x2="${W - 24}" y2="48" stroke="rgba(255,255,255,0.07)"/>
+  <line x1="24" y1="48" x2="${W - 24}" y2="48" stroke="rgba(255,255,255,0.10)"/>
 </g>
 ${cards}
 <g>
@@ -479,14 +460,14 @@ function buildProjects(d) {
     while (textWidth(shownName, nameFs) > maxNameW && shownName.length > 4) shownName = shownName.slice(0, -1);
     if (shownName !== name) shownName = shownName.slice(0, -1) + '…';
     return `<g>
-  <rect x="${x}" y="${y}" width="268" height="110" rx="12" fill="rgba(255,255,255,0.022)" stroke="rgba(255,255,255,0.07)"/>
+  <rect x="${x}" y="${y}" width="268" height="110" rx="12" fill="rgba(255,255,255,0.035)" stroke="rgba(255,255,255,0.10)"/>
   <rect x="${x + 14}" y="${y + 1}" width="240" height="1.2" rx="0.6" fill="url(#cardTop)" opacity="0.85"/>
   <text x="${x + 16}" y="${y + 30}" font-family="${F.mono}" font-size="${nameFs}" font-weight="600" fill="${C.text}">${esc(shownName)}</text>
   <text x="${x + 252}" y="${y + 30}" text-anchor="end" font-family="${F.mono}" font-size="10.5" fill="${C.cinnabarSoft}">★ ${p.stars}</text>
   ${descLines.map((ln, k) => `<text x="${x + 16}" y="${y + 54 + k * 17}" font-family="${F.sans}" font-size="10.5" fill="#9B978B">${esc(ln)}</text>`).join('\n  ')}
   <circle cx="${x + 18}" cy="${y + 92}" r="2.6" fill="${C.silverDim}"/>
   <text x="${x + 27}" y="${y + 95.5}" font-family="${F.sans}" font-size="9.5" fill="${C.muted}">${esc(p.lang)}</text>
-  <rect x="${x + 268 - 16 - tagW}" y="${y + 82}" width="${tagW}" height="18" rx="9" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.12)"/>
+  <rect x="${x + 268 - 16 - tagW}" y="${y + 82}" width="${tagW}" height="18" rx="9" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)"/>
   <text x="${x + 268 - 16 - tagW / 2}" y="${y + 94.5}" text-anchor="middle" font-family="${F.sans}" font-size="${tagFs}" fill="${C.sub}">${esc(p.tag)}</text>
 </g>`;
   }).join('\n');
@@ -558,8 +539,8 @@ function buildFooter(d) {
   const inner = `
 <rect width="${W}" height="${H}" fill="url(#grain2)" opacity="0.5"/>
 ${specks}
-${corners('rgba(239,233,219,0.22)', false)}
-${corners('rgba(239,233,219,0.14)', true)}
+${corners('rgba(243,239,228,0.30)', false)}
+${corners('rgba(243,239,228,0.18)', true)}
 <ellipse cx="${W / 2}" cy="66" rx="260" ry="44" fill="url(#footGlow)"/>
 <text x="${W / 2}" y="56" text-anchor="middle" font-family="${F.sans}" font-size="13" fill="${C.sub}" letter-spacing="1.2">${esc(d.user.bio)}</text>
 <text x="${W / 2}" y="80" text-anchor="middle" font-family="${F.mono}" font-size="9" letter-spacing="2.4" fill="${C.dim}">SAKURA7301 · ${esc(d.user.location.toUpperCase())} · EST. 2020</text>
@@ -568,8 +549,8 @@ ${corners('rgba(239,233,219,0.14)', true)}
 `;
 
   const defs = `
-<radialGradient id="footGlow"><stop offset="0" stop-color="#E9E5DA" stop-opacity="0.05"/><stop offset="1" stop-color="#E9E5DA" stop-opacity="0"/></radialGradient>
-<linearGradient id="barGrad2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E9E5DA" stop-opacity="0"/><stop offset="0.45" stop-color="#E9E5DA" stop-opacity="0.30"/><stop offset="0.65" stop-color="#B8402B" stop-opacity="0.55"/><stop offset="1" stop-color="#B8402B" stop-opacity="0"/></linearGradient>
+<radialGradient id="footGlow"><stop offset="0" stop-color="#F5F0E5" stop-opacity="0.08"/><stop offset="1" stop-color="#E9E5DA" stop-opacity="0"/></radialGradient>
+<linearGradient id="barGrad2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F5F0E5" stop-opacity="0"/><stop offset="0.45" stop-color="#F5F0E5" stop-opacity="0.36"/><stop offset="0.65" stop-color="#C2492F" stop-opacity="0.6"/><stop offset="1" stop-color="#B8402B" stop-opacity="0"/></linearGradient>
 <pattern id="grain2" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.8" fill="${C.paper}" opacity="0.06"/></pattern>`;
 
   const style = `
@@ -586,7 +567,7 @@ function buildDivider() {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img">
 <defs>
 <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
-  <stop offset="0" stop-color="#E9E5DA" stop-opacity="0"/>
+  <stop offset="0" stop-color="#F5F0E5" stop-opacity="0"/>
   <stop offset="0.3" stop-color="#E9E5DA" stop-opacity="0.28"/>
   <stop offset="0.5" stop-color="#E9E5DA" stop-opacity="0.16"/>
   <stop offset="0.72" stop-color="#B8402B" stop-opacity="0.22"/>

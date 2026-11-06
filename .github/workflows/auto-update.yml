@@ -4,10 +4,6 @@ on:
   schedule:
     - cron: '23 3 * * 1'      # 每周一 03:23 UTC
   workflow_dispatch:          # 也可以手动触发
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/**'
 
 permissions:
   contents: write             # 需要「Read and write permissions」
@@ -36,5 +32,5 @@ jobs:
             echo "no changes"
           else
             git commit -m "chore: refresh profile data [skip ci]"
-            git push
+            git push || echo "skip: 仓库没有开启 Actions 写权限（Settings → Actions → General → Workflow permissions）"
           fi
