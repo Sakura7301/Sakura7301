@@ -258,7 +258,7 @@ function buildHero(d) {
   for (const it of [
     { label: '嵌入式工程师', dot: C.cinnabarSoft },
     { label: '游戏开发', dot: C.silverDim },
-    { label: 'DSH 插件作者', dot: C.silverDim },
+    { label: '智能体开发者', dot: C.silverDim },
   ]) {
     const p = pill(px, 292, it.label, { dot: it.dot, h: 24, fs: 10 });
     pills.push(p.svg);
