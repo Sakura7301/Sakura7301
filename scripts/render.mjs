@@ -200,6 +200,60 @@ function avatarDataUri() {
   return '';
 }
 
+/** 局部：名字背后的水墨远山 —— 淡影 + 山脊线 + 皴笔 + 云气 */
+function inkBackdrop() {
+  const crest = 'M-10 132 C 36 126 74 112 110 100 C 144 88 176 90 204 104 C 234 120 262 136 292 142 C 322 148 352 140 382 126 C 412 112 442 104 472 106 C 512 110 556 124 600 140 C 668 164 760 182 890 192';
+  const crest2 = 'M-10 216 C 44 212 90 202 132 188 C 174 174 210 162 246 160 C 282 158 314 168 346 182 C 382 198 430 212 490 222 C 570 234 700 240 890 242';
+
+  // 皴笔：几道短斜线，落在山体的暗面
+  const strokes = [
+    [520, 176, 536, 196], [548, 186, 566, 208], [578, 196, 598, 218],
+    [252, 116, 266, 138], [276, 124, 292, 148], [640, 188, 664, 206],
+    [700, 196, 726, 212], [330, 158, 344, 178],
+  ].map(([x1, y1, x2, y2]) => `<path d="M${x1} ${y1} L${x2} ${y2}" stroke="rgba(243,239,228,0.09)" stroke-width="0.9" stroke-linecap="round"/>`).join('');
+
+  return `<g class="backdrop">
+  <path d="${crest} L 890 340 L -10 340 Z" fill="url(#rangeFar)"/>
+  <path d="${crest}" fill="none" stroke="rgba(243,239,228,0.24)" stroke-width="1"/>
+  ${strokes}
+  <path d="${crest2} L 890 340 L -10 340 Z" fill="url(#rangeMid)"/>
+  <path d="${crest2}" fill="none" stroke="rgba(243,239,228,0.06)" stroke-width="0.8"/>
+
+  <ellipse cx="240" cy="182" rx="230" ry="13" fill="url(#mistGlow)"/>
+  <ellipse cx="620" cy="214" rx="200" ry="14" fill="url(#mistGlow)"/>
+  <ellipse cx="120" cy="258" rx="190" ry="12" fill="url(#mistGlow)"/>
+
+  <path d="M556 138 C 590 130 624 130 654 138" fill="none" stroke="rgba(243,239,228,0.09)" stroke-width="1" stroke-linecap="round"/>
+  <path d="M578 152 C 608 146 636 147 662 153" fill="none" stroke="rgba(243,239,228,0.06)" stroke-width="0.9" stroke-linecap="round"/>
+</g>`;
+}
+
+/** 局部：浑天仪（星盘）—— 只取线条与刻度，不做完整八卦盘 */
+function armillary(cx, cy) {
+  const R = 120;
+  const ticks = Array.from({ length: 24 }, (_, i) => {
+    const a = (i * 15 * Math.PI) / 180;
+    const r1 = i % 3 === 0 ? 114 : 119;
+    return `<line x1="${(cx + R * Math.cos(a)).toFixed(1)}" y1="${(cy + R * Math.sin(a)).toFixed(1)}" x2="${(cx + r1 * Math.cos(a)).toFixed(1)}" y2="${(cy + r1 * Math.sin(a)).toFixed(1)}" stroke="rgba(243,239,228,0.18)" stroke-width="0.8"/>`;
+  }).join('');
+  return `<g>
+    <circle cx="${cx}" cy="${cy}" r="150" fill="url(#skyGlow)"/>
+    ${ticks}
+    <circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="rgba(243,239,228,0.18)" stroke-width="0.9"/>
+    <circle cx="${cx}" cy="${cy}" r="104" fill="none" stroke="rgba(243,239,228,0.08)" stroke-width="0.8" stroke-dasharray="1 6"/>
+    <g><animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="360 ${cx} ${cy}" dur="220s" repeatCount="indefinite"/>
+      <ellipse cx="${cx}" cy="${cy}" rx="${R}" ry="40" transform="rotate(-22 ${cx} ${cy})" fill="none" stroke="rgba(243,239,228,0.17)" stroke-width="0.9"/>
+      <ellipse cx="${cx}" cy="${cy}" rx="${R}" ry="74" transform="rotate(52 ${cx} ${cy})" fill="none" stroke="rgba(243,239,228,0.11)" stroke-width="0.8"/>
+    </g>
+    <path d="M${cx - R} ${cy} A${R} ${R} 0 0 1 ${(cx + R * Math.cos(-60 * Math.PI / 180)).toFixed(1)} ${(cy + R * Math.sin(-60 * Math.PI / 180)).toFixed(1)}" fill="none" stroke="rgba(243,239,228,0.40)" stroke-width="1.1" stroke-linecap="round"/>
+    <line x1="${cx - R}" y1="${cy}" x2="${cx + R}" y2="${cy}" stroke="rgba(243,239,228,0.07)" stroke-width="0.7"/>
+    <line x1="${cx}" y1="${cy - R}" x2="${cx}" y2="${cy + R}" stroke="rgba(243,239,228,0.07)" stroke-width="0.7"/>
+    <circle cx="${cx}" cy="${cy}" r="2.6" fill="${C.silver}" opacity="0.5"/>
+    <circle cx="${cx + 60}" cy="${cy - 92}" r="1.6" fill="${C.silver}" opacity="0.55"/>
+    <circle cx="${cx - 82}" cy="${cy - 68}" r="1.3" fill="${C.silver}" opacity="0.40"/>
+  </g>`;
+}
+
 /** 局部：远山与云雾 */
 function landscape(W, H) {
   const farTop = 'M0 340 L0 316 C 110 308 190 298 270 300 C 350 302 420 290 500 284 C 580 278 640 290 710 294 C 780 298 832 288 880 284';
@@ -220,13 +274,11 @@ function landscape(W, H) {
  * ------------------------------------------------------------------ */
 function buildHero(d) {
   const W = 880, H = 340;
-  const av = { x: 116, y: 194, r: 74 };
   const R = rng(20201106);
-  const avatar = avatarDataUri();
 
   // 北斗七星（银白细星）
-  const bowl = [[302, 54], [338, 44], [352, 76], [318, 88]];
-  const handle = [[388, 80], [426, 66], [462, 52]];
+  const bowl = [[318, 62], [354, 52], [368, 84], [334, 96]];
+  const handle = [[400, 90], [438, 76], [474, 62]];
   const segs = [
     [bowl[0], bowl[1]], [bowl[1], bowl[2]], [bowl[2], bowl[3]], [bowl[3], bowl[0]],
     [bowl[3], handle[0]], [handle[0], handle[1]], [handle[1], handle[2]],
@@ -247,20 +299,20 @@ function buildHero(d) {
   }
 
   // 飞鸟：几笔淡墨
-  const birds = `<g stroke="rgba(243,239,228,0.50)" stroke-width="1" fill="none" stroke-linecap="round">
-  <path d="M566 118 C 571 111 577 111 582 117 C 587 111 593 111 598 118"/>
-  <path d="M608 96 C 612 90 617 90 621 95 C 625 90 630 90 634 96"/>
-  <path d="M586 140 C 589 136 592 136 595 139 C 598 136 601 136 604 140"/>
+  const birds = `<g stroke="rgba(243,239,228,0.42)" stroke-width="1" fill="none" stroke-linecap="round">
+  <path d="M474 128 C 479 121 485 121 490 127 C 495 121 501 121 506 128"/>
+  <path d="M520 108 C 524 102 529 102 533 107 C 537 102 542 102 546 108"/>
+  <path d="M498 152 C 501 148 504 148 507 151 C 510 148 513 148 516 152"/>
 </g>`;
 
   const pills = [];
-  let px = 218;
+  let px = 58;
   for (const it of [
     { label: '嵌入式工程师', dot: C.cinnabarSoft },
     { label: '游戏开发', dot: C.silverDim },
     { label: '智能体开发者', dot: C.silverDim },
   ]) {
-    const p = pill(px, 292, it.label, { dot: it.dot, h: 24, fs: 10 });
+    const p = pill(px, 290, it.label, { dot: it.dot, h: 24, fs: 10 });
     pills.push(p.svg);
     px += p.width + 9;
   }
@@ -269,37 +321,25 @@ function buildHero(d) {
 <g class="wash">
   <ellipse class="au a1" cx="820" cy="20" rx="240" ry="150" fill="url(#washCool)"/>
   <ellipse class="au a2" cx="150" cy="330" rx="240" ry="150" fill="url(#washWarm)"/>
-  <ellipse class="au a3" cx="500" cy="150" rx="280" ry="170" fill="url(#washInk)"/>
+  <ellipse class="au a3" cx="460" cy="150" rx="280" ry="170" fill="url(#washInk)"/>
 </g>
 <rect width="${W}" height="${H}" fill="url(#grain)" opacity="0.6"/>
 <rect width="${W}" height="${H}" fill="url(#vignette)"/>
 
-<g>
-  <circle cx="800" cy="104" r="86" fill="url(#moonHalo)"/>
-  <circle cx="800" cy="104" r="44" fill="url(#moonDisc)"/>
-  <circle cx="800" cy="104" r="44" fill="none" stroke="rgba(243,239,228,0.16)" stroke-width="0.8"/>
-</g>
-
+${inkBackdrop()}
 ${dipperLines}
 ${dipperStars}
 <g class="dust">${dust}</g>
 ${birds}
 ${landscape(W, H)}
+${armillary(724, 170)}
 
 <g>
-  <circle cx="${av.x}" cy="${av.y}" r="118" fill="url(#avHalo)"/>
-  ${avatar ? `<image x="${av.x - av.r}" y="${av.y - av.r}" width="${av.r * 2}" height="${av.r * 2}" href="${avatar}" preserveAspectRatio="xMidYMid slice" clip-path="url(#avClip)"/>` : ''}
-  <circle cx="${av.x}" cy="${av.y}" r="${av.r}" fill="url(#avVig)"/>
-  <circle cx="${av.x}" cy="${av.y}" r="${av.r}" fill="none" stroke="rgba(243,239,228,0.55)" stroke-width="1.3"/>
-  <circle cx="${av.x}" cy="${av.y}" r="${av.r + 8}" fill="none" stroke="rgba(243,239,228,0.16)" stroke-width="1"/>
-</g>
-
-<g>
-  <text x="218" y="116" font-family="${F.mono}" font-size="9.5" letter-spacing="3.4" fill="${C.dim}">SAKURA7301  ·  SHANGHAI  ·  CN</text>
-  <text class="name" x="214" y="194" font-family="${F.sans}" font-size="72" font-weight="800" fill="url(#nameGrad)" letter-spacing="4">${esc(d.user.name)}</text>
-  <text x="218" y="222" font-family="${F.mono}" font-size="13" letter-spacing="10.5" fill="${C.silverDim}">XUAN AN</text>
-  <text x="218" y="258" font-family="${F.sans}" font-size="18" fill="${C.text}" letter-spacing="0.8">知其不可奈何，而安之若命</text>
-  <text x="218" y="276" font-family="${F.mono}" font-size="9" letter-spacing="1.6" fill="${C.dim}">— 庄子</text>
+  <text x="58" y="98" font-family="${F.mono}" font-size="9.5" letter-spacing="3.4" fill="${C.dim}">SAKURA7301  ·  SHANGHAI  ·  CN</text>
+  <text class="name" x="54" y="188" font-family="${F.sans}" font-size="76" font-weight="800" fill="url(#nameGrad)" letter-spacing="4">${esc(d.user.name)}</text>
+  <text x="58" y="218" font-family="${F.mono}" font-size="14" letter-spacing="10.5" fill="${C.silverDim}">XUAN AN</text>
+  <text x="58" y="256" font-family="${F.sans}" font-size="19" fill="${C.text}" letter-spacing="0.8">知其不可奈何，而安之若命</text>
+  <text x="58" y="274" font-family="${F.mono}" font-size="9" letter-spacing="1.6" fill="${C.dim}">— 庄子</text>
   ${pills.join('\n  ')}
 </g>
 
@@ -318,14 +358,21 @@ ${landscape(W, H)}
   <stop offset="0.55" stop-color="#E6E0D0"/>
   <stop offset="1" stop-color="#B9B4A6"/>
 </linearGradient>
-<clipPath id="avClip"><circle cx="${av.x}" cy="${av.y}" r="${av.r}"/></clipPath>
-<radialGradient id="avHalo"><stop offset="0" stop-color="#F5F0E5" stop-opacity="0.20"/><stop offset="0.55" stop-color="#F5F0E5" stop-opacity="0.06"/><stop offset="1" stop-color="#F5F0E5" stop-opacity="0"/></radialGradient>
-<radialGradient id="avVig" cx="0.5" cy="0.5" r="0.5">
-  <stop offset="0.64" stop-color="#14171B" stop-opacity="0"/>
-  <stop offset="1" stop-color="#14171B" stop-opacity="0.45"/>
-</radialGradient>
-<radialGradient id="moonDisc"><stop offset="0" stop-color="#F5F0E5" stop-opacity="0.16"/><stop offset="0.75" stop-color="#F5F0E5" stop-opacity="0.06"/><stop offset="1" stop-color="#F5F0E5" stop-opacity="0.02"/></radialGradient>
-<radialGradient id="moonHalo"><stop offset="0" stop-color="#F5F0E5" stop-opacity="0.10"/><stop offset="1" stop-color="#F5F0E5" stop-opacity="0"/></radialGradient>
+<filter id="blur12" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="12"/></filter>
+<filter id="blur10" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
+<filter id="blur4" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4"/></filter>
+<filter id="blur2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.6"/></filter>
+<radialGradient id="skyGlow"><stop offset="0" stop-color="#F5F0E5" stop-opacity="0.07"/><stop offset="0.6" stop-color="#F5F0E5" stop-opacity="0.02"/><stop offset="1" stop-color="#F5F0E5" stop-opacity="0"/></radialGradient>
+<linearGradient id="rangeFar" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#F3EFE4" stop-opacity="0.075"/>
+  <stop offset="0.5" stop-color="#F3EFE4" stop-opacity="0.028"/>
+  <stop offset="1" stop-color="#F3EFE4" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="rangeMid" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#F3EFE4" stop-opacity="0.05"/>
+  <stop offset="0.7" stop-color="#F3EFE4" stop-opacity="0.02"/>
+  <stop offset="1" stop-color="#F3EFE4" stop-opacity="0"/>
+</linearGradient>
 <radialGradient id="washCool"><stop offset="0" stop-color="#3A4A57" stop-opacity="0.55"/><stop offset="1" stop-color="#3A4A57" stop-opacity="0"/></radialGradient>
 <radialGradient id="washWarm"><stop offset="0" stop-color="#3A3226" stop-opacity="0.45"/><stop offset="1" stop-color="#3A3226" stop-opacity="0"/></radialGradient>
 <radialGradient id="washInk"><stop offset="0" stop-color="#2A323A" stop-opacity="0.55"/><stop offset="1" stop-color="#2A323A" stop-opacity="0"/></radialGradient>
@@ -335,8 +382,8 @@ ${landscape(W, H)}
   <stop offset="1" stop-color="${C.bg0}" stop-opacity="0.55"/>
 </radialGradient>
 <linearGradient id="mtnMaskG" x1="0" y1="0" x2="1" y2="0">
-  <stop offset="0.30" stop-color="#000"/>
-  <stop offset="0.52" stop-color="#fff"/>
+  <stop offset="0.40" stop-color="#000"/>
+  <stop offset="0.62" stop-color="#fff"/>
 </linearGradient>
 <mask id="mtnMask"><rect width="${W}" height="${H}" fill="url(#mtnMaskG)"/></mask>
 <linearGradient id="barGrad" x1="0" y1="0" x2="1" y2="0">

@@ -4,7 +4,7 @@
 > 全套素材（SVG 动效横幅、技术栈、作品卡、数据面板、页脚）都已生成好，直接上传即可。
 
 视觉语言：**水墨** —— 墨黑 / 宣纸白 / 银灰，只在印章处点一点朱砂。
-意象：头像（左侧）+ 北斗七星、远山云雾、飞鸟，一点朱砂做点缀。
+意象：北斗七星、远山云雾、飞鸟，右侧一架细线浑天仪（慢转），一点朱砂做点缀。
 
 ---
 
@@ -98,8 +98,8 @@ git push -u origin main
 | 文件 | 作用 |
 | --- | --- |
 | `README.md` | 主页本体（文字排版、链接、章节） |
-| `assets/hero.svg` | 首屏横幅：水墨夜色 + 远山云雾 + 北斗七星 + 飞鸟 + 头像（左侧圆形） |
-| `assets/avatar.jpg` | 头像原图（会被内嵌进 hero.svg，见下方说明） |
+| `assets/hero.svg` | 首屏横幅：水墨夜色 + 名字背后的远山（淡影 / 山脊线 / 皴笔 / 云气）+ 北斗七星 + 飞鸟 + 右侧浑天仪细线（慢转） |
+| `assets/avatar.jpg` | 备用头像（现在横幅不再使用，头像由 GitHub 个人资料自己展示，可删） |
 | `assets/stack.svg` | 技术栈（语言 / 工具 / 方向三行胶囊） |
 | `assets/projects.svg` | 精选作品 6 张卡片（带 Star 数、语言、标签） |
 | `assets/dashboard.svg` | 数据面板（仓库数、原创数、Star、关注者、语言占比条，墨分五色） |
@@ -125,12 +125,13 @@ git add . && git commit -m "update profile" && git push
 
 | 想改什么 | 位置（`scripts/render.mjs`） |
 | --- | --- |
-| 换头像 | 直接覆盖 `assets/avatar.jpg`（正方形，建议 ≥ 320×320），再运行脚本 |
+| 换头像 | 在 GitHub **Edit profile** 里换；横幅里不再放头像 |
 | 配色（墨 / 纸 / 银 / 朱砂） | 顶部 `const C = { ... }` |
 | 首屏文案：名字、英文名、诗句、三个小标签 | `buildHero()` 里的 `<text>` 与 `items` 数组 |
-| 头像位置/大小 | `buildHero()` 顶部 `const av = { x, y, r }` |
+| 浑天仪位置/大小、转速 | `buildHero()` 里 `armillary(724, 170)`；转速是 `armillary()` 里 `dur="220s"` |
 | 北斗七星的形状与位置 | `buildHero()` 里的 `bowl` / `handle` 坐标 |
-| 远山形状 / 云雾 | `landscape()` |
+| 名字背后的远山（轮廓、皴笔、云气） | `inkBackdrop()` |
+| 底部远山 / 云雾 | `landscape()` |
 | 「精选作品」展示哪 6 个仓库 | `FEATURED` 数组（按仓库名回填真实 Star 数） |
 | 技术栈胶囊 | `buildStack()` 里的 `rows` |
 | 关于我 / 最近在忙 / 找到我 | `buildReadme()` |
@@ -143,7 +144,7 @@ git add . && git commit -m "update profile" && git push
 
 ## 7. 小贴士 & 常见问题
 
-- **头像为什么是内嵌的**：GitHub 把 README 里的 SVG 当图片加载，SVG 内部的**外链图片不会加载**，所以头像是以 base64 直接内嵌进 `hero.svg` 的（约 +30KB，无影响）。换头像 = 换 `assets/avatar.jpg` + 重跑一次脚本。
+- **横幅里为什么没有头像**：GitHub 主页左上角本身就会显示你的头像，横幅里再放一次是重复；所以只保留文字与线稿。
 - **首屏三个小标签**（嵌入式工程师 / 游戏开发 / 智能体开发者）在 `buildHero()` 的 `items` 数组里；「关于我」的自我介绍在 `buildReadme()`。
 - **动效是真的**：北斗星呼吸、墨屑浮动、分隔线光点流动、云雾缓慢漂移 —— 全部是 SVG 内部动画，不需要 JS。
 - **推荐暗色模式**：整套水墨是为 GitHub Dark 调的；浅色模式下会看到深色画面浮在白底上。
