@@ -304,7 +304,7 @@ ${landscape(W, H)}
   <text class="name" x="214" y="194" font-family="${F.sans}" font-size="72" font-weight="800" fill="url(#nameGrad)" letter-spacing="4">${esc(d.user.name)}</text>
   <text x="218" y="222" font-family="${F.mono}" font-size="13" letter-spacing="10.5" fill="${C.silverDim}">XUAN AN</text>
   <text x="218" y="258" font-family="${F.sans}" font-size="18" fill="${C.text}" letter-spacing="0.8">知其不可奈何，而安之若命</text>
-  <text x="218" y="276" font-family="${F.mono}" font-size="9" letter-spacing="1.6" fill="${C.dim}">— 庄子 · 人间世</text>
+  <text x="218" y="276" font-family="${F.mono}" font-size="9" letter-spacing="1.6" fill="${C.dim}">— 庄子</text>
   ${pills.join('\n  ')}
 </g>
 
