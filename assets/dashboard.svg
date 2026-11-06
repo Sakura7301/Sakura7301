@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="300" viewBox="0 0 880 300" role="img">
+<defs>
+<linearGradient id="panelBg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#0A0C0E"/>
+<stop offset="1" stop-color="#07080A"/>
+</linearGradient>
+<clipPath id="frame"><rect x="0" y="0" width="880" height="300" rx="16"/></clipPath>
+<linearGradient id="numGrad" x1="0" y1="1" x2="0.8" y2="0"><stop offset="0" stop-color="#B9B4A6"/><stop offset="1" stop-color="#F4F0E6"/></linearGradient>
+</defs>
+<style><![CDATA[
+
+]]></style>
+<g clip-path="url(#frame)">
+<rect width="880" height="300" fill="url(#panelBg)"/>
+
+<g>
+  <circle cx="26" cy="26" r="3.4" fill="#B8402B" opacity="0.85"/><circle cx="40" cy="26" r="3.4" fill="#CFD2D6" opacity="0.65"/><circle cx="54" cy="26" r="3.4" fill="#2C3439"/>
+  <text x="70" y="30" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="10" letter-spacing="1.4" fill="#6A6963">github · stats snapshot</text>
+  <text x="856" y="30" text-anchor="end" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="9" letter-spacing="1.2" fill="#53524D">SYNC 2026-11-06</text>
+  <line x1="24" y1="48" x2="856" y2="48" stroke="rgba(255,255,255,0.07)"/>
+</g>
+<g>
+  <rect x="24" y="62" width="198" height="80" rx="12" fill="rgba(255,255,255,0.022)" stroke="rgba(255,255,255,0.07)"/>
+  <text x="42" y="102" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" font-size="27" font-weight="800" fill="url(#numGrad)">75</text>
+  <text x="42" y="124" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="8.5" letter-spacing="1.1" fill="#8B8A83">PUBLIC REPOS · 公开仓库</text>
+</g>
+<g>
+  <rect x="234" y="62" width="198" height="80" rx="12" fill="rgba(255,255,255,0.022)" stroke="rgba(255,255,255,0.07)"/>
+  <text x="252" y="102" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" font-size="27" font-weight="800" fill="url(#numGrad)">13</text>
+  <text x="252" y="124" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="8.5" letter-spacing="1.1" fill="#8B8A83">ORIGINAL REPOS · 原创仓库</text>
+</g>
+<g>
+  <rect x="24" y="154" width="198" height="80" rx="12" fill="rgba(255,255,255,0.022)" stroke="rgba(255,255,255,0.07)"/>
+  <text x="42" y="194" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" font-size="27" font-weight="800" fill="url(#numGrad)">218</text>
+  <text x="42" y="216" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="8.5" letter-spacing="1.1" fill="#8B8A83">STARS EARNED · 获得星标</text>
+</g>
+<g>
+  <rect x="234" y="154" width="198" height="80" rx="12" fill="rgba(255,255,255,0.022)" stroke="rgba(255,255,255,0.07)"/>
+  <text x="252" y="194" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" font-size="27" font-weight="800" fill="url(#numGrad)">39</text>
+  <text x="252" y="216" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="8.5" letter-spacing="1.1" fill="#8B8A83">FOLLOWERS · 关注者</text>
+</g>
+<g>
+  <text x="456" y="72" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="9" letter-spacing="1.8" fill="#6A6963">TOP LANGUAGES · 自有仓库代码量</text>
+  <g>
+  <text x="456" y="104" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" font-size="11" fill="#E9E5DA">C</text>
+  <rect x="536" y="96" width="250" height="8" rx="4" fill="rgba(255,255,255,0.045)"/>
+  <rect x="536" y="96" width="121.8" height="8" rx="4" fill="#D9D3C4" opacity="0.9"/>
+  <text x="856" y="104" text-anchor="end" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="9.5" fill="#8B8A83">48.7%</text>
+</g>
+<g>
+  <text x="456" y="135" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" font-size="11" fill="#E9E5DA">Python</text>
+  <rect x="536" y="127" width="250" height="8" rx="4" fill="rgba(255,255,255,0.045)"/>
+  <rect x="536" y="127" width="81.1" height="8" rx="4" fill="#A7ADB2" opacity="0.9"/>
+  <text x="856" y="135" text-anchor="end" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="9.5" fill="#8B8A83">32.4%</text>
+</g>
+<g>
+  <text x="456" y="166" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" font-size="11" fill="#E9E5DA">JavaScript</text>
+  <rect x="536" y="158" width="250" height="8" rx="4" fill="rgba(255,255,255,0.045)"/>
+  <rect x="536" y="158" width="21.9" height="8" rx="4" fill="#7A848A" opacity="0.9"/>
+  <text x="856" y="166" text-anchor="end" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="9.5" fill="#8B8A83">8.8%</text>
+</g>
+<g>
+  <text x="456" y="197" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" font-size="11" fill="#E9E5DA">C++</text>
+  <rect x="536" y="189" width="250" height="8" rx="4" fill="rgba(255,255,255,0.045)"/>
+  <rect x="536" y="189" width="18.0" height="8" rx="4" fill="#4E585E" opacity="0.9"/>
+  <text x="856" y="197" text-anchor="end" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="9.5" fill="#8B8A83">7.1%</text>
+</g>
+<g>
+  <text x="456" y="228" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" font-size="11" fill="#E9E5DA">HTML</text>
+  <rect x="536" y="220" width="250" height="8" rx="4" fill="rgba(255,255,255,0.045)"/>
+  <rect x="536" y="220" width="18.0" height="8" rx="4" fill="#2F373C" opacity="0.9"/>
+  <text x="856" y="228" text-anchor="end" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="9.5" fill="#8B8A83">1.4%</text>
+</g>
+</g>
+<text x="24" y="280" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="8.5" fill="#53524D">byte-weighted · own repositories only · 由 scripts/render.mjs 生成</text>
+<text x="856" y="280" text-anchor="end" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="8.5" fill="#53524D">SINCE 2020-12-17</text>
+
+<rect x="0.5" y="0.5" width="879" height="299" rx="16" fill="none" stroke="rgba(255,255,255,0.07)"/>
+</g>
+</svg>
