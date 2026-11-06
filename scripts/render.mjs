@@ -256,9 +256,9 @@ function buildHero(d) {
   const pills = [];
   let px = 218;
   for (const it of [
-    { label: 'DSH 插件作者', dot: C.cinnabarSoft },
-    { label: '底层 · 系统', dot: C.silverDim },
-    { label: 'Agent × LLM', dot: C.silverDim },
+    { label: '嵌入式工程师', dot: C.cinnabarSoft },
+    { label: '游戏开发', dot: C.silverDim },
+    { label: 'DSH 插件作者', dot: C.silverDim },
   ]) {
     const p = pill(px, 292, it.label, { dot: it.dot, h: 24, fs: 10 });
     pills.push(p.svg);
@@ -302,13 +302,6 @@ ${landscape(W, H)}
 <g>
   <text x="218" y="116" font-family="${F.mono}" font-size="9.5" letter-spacing="3.4" fill="${C.dim}">SAKURA7301  ·  SHANGHAI  ·  CN</text>
   <text class="name" x="214" y="194" font-family="${F.sans}" font-size="72" font-weight="800" fill="url(#nameGrad)" letter-spacing="4">${esc(d.user.name)}</text>
-  <g transform="translate(378 150) rotate(-4)">
-    <rect width="22" height="48" rx="2" fill="${C.cinnabar}"/>
-    <rect x="2.5" y="2.5" width="17" height="43" rx="1" fill="none" stroke="#F3E6D2" stroke-opacity="0.45" stroke-width="0.8"/>
-    <text x="11" y="15" text-anchor="middle" font-family="${F.sans}" font-size="9.5" font-weight="700" fill="#F7EDDC">人</text>
-    <text x="11" y="28" text-anchor="middle" font-family="${F.sans}" font-size="9.5" font-weight="700" fill="#F7EDDC">间</text>
-    <text x="11" y="41" text-anchor="middle" font-family="${F.sans}" font-size="9.5" font-weight="700" fill="#F7EDDC">世</text>
-  </g>
   <text x="218" y="222" font-family="${F.mono}" font-size="13" letter-spacing="10.5" fill="${C.silverDim}">XUAN AN</text>
   <text x="218" y="258" font-family="${F.sans}" font-size="18" fill="${C.text}" letter-spacing="0.8">知其不可奈何，而安之若命</text>
   <text x="218" y="276" font-family="${F.mono}" font-size="9" letter-spacing="1.6" fill="${C.dim}">— 庄子 · 人间世</text>
@@ -492,7 +485,7 @@ function buildStack() {
   const rows = [
     { label: 'LANG', color: C.silver, y: 52, items: ['Python', 'C', 'C++', 'Assembly', 'JavaScript', 'TypeScript'] },
     { label: 'TOOLBOX', color: C.silverDim, y: 98, items: ['Linux', 'Git', 'MQTT', 'TLS', 'Agent × LLM', '插件架构'] },
-    { label: 'FOCUS', color: C.cinnabarSoft, y: 144, items: ['DSH 插件生态', 'Agent 工程化', '协议 · 性能'] },
+    { label: 'FOCUS', color: C.cinnabarSoft, y: 144, items: ['嵌入式 · 协议', 'DSH 插件生态', '游戏开发'] },
   ];
 
   const rowsSvg = rows.map((r) => {
@@ -610,14 +603,14 @@ function buildReadme(d) {
 
 ## 关于我
 
-> 我是 **${d.user.name}**，坐标${d.user.location === 'ShangHai' ? '上海' : d.user.location}。  
+> 我是 **${d.user.name}**，坐标${d.user.location === 'ShangHai' ? '上海' : d.user.location}。**嵌入式工程师**，业余喜欢折腾**游戏开发**。  
 > 从 C 指针一路折腾到 AI Agent —— 底层够硬，上层够野。
 
+- 🔧 **嵌入式**　C / C++ / 汇编：MQTT 客户端、TLS 实战、协议细节与性能
+- 🎮 **游戏开发**　业余做玩法原型与技术实验
 - 🔭 **正在构建**　DSH 插件生态 —— [梅花易数 MeiHuaYi](https://github.com/${d.user.login}/MeiHuaYi) 已上架
 - 🧠 **长期折腾**　Multi-Agent / LLM 工程化，以及 \`chatgpt-on-wechat\` 生态
-- 🛠 **偶尔硬核**　C / C++ / 汇编：MQTT 客户端、TLS 实战、在线评测系统
 - ✍️ **学习笔记**　[Notes](https://github.com/${d.user.login}/Notes) —— ${topStars} ★ 的知识库
-- 💬 **信条**　　*I believe that technology makes dreams greater.*
 
 <sub>02 · STACK</sub>
 
@@ -646,6 +639,7 @@ function buildReadme(d) {
 - 把 DSH 插件做到真正「开箱即用」——梅花易数之后，还在憋下一个
 - 啃 Agent 的工程化落地：记忆、工具调用、多智能体协作
 - 偶尔回到底层，写点 C：MQTT、TLS、协议细节与性能
+- 业余折腾游戏开发：玩法原型 + 引擎与工具链的小实验
 
 <sub>06 · CONTACT</sub>
 

@@ -135,19 +135,12 @@
 <g>
   <text x="218" y="116" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="9.5" letter-spacing="3.4" fill="#88857C">SAKURA7301  ·  SHANGHAI  ·  CN</text>
   <text class="name" x="214" y="194" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" font-size="72" font-weight="800" fill="url(#nameGrad)" letter-spacing="4">玄安</text>
-  <g transform="translate(378 150) rotate(-4)">
-    <rect width="22" height="48" rx="2" fill="#C2492F"/>
-    <rect x="2.5" y="2.5" width="17" height="43" rx="1" fill="none" stroke="#F3E6D2" stroke-opacity="0.45" stroke-width="0.8"/>
-    <text x="11" y="15" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" font-size="9.5" font-weight="700" fill="#F7EDDC">人</text>
-    <text x="11" y="28" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" font-size="9.5" font-weight="700" fill="#F7EDDC">间</text>
-    <text x="11" y="41" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" font-size="9.5" font-weight="700" fill="#F7EDDC">世</text>
-  </g>
   <text x="218" y="222" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="13" letter-spacing="10.5" fill="#ADB4BA">XUAN AN</text>
   <text x="218" y="258" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" font-size="18" fill="#F3EFE4" letter-spacing="0.8">知其不可奈何，而安之若命</text>
   <text x="218" y="276" font-family="'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="9" letter-spacing="1.6" fill="#88857C">— 庄子 · 人间世</text>
-  <rect x="218" y="292" width="100" height="24" rx="12" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="233.5" cy="304" r="2.6" fill="#E28B74"/><text x="242" y="307.5" font-size="10" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">DSH 插件作者</text>
-  <rect x="327" y="292" width="94" height="24" rx="12" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="342.5" cy="304" r="2.6" fill="#ADB4BA"/><text x="351" y="307.5" font-size="10" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">底层 · 系统</text>
-  <rect x="430" y="292" width="99" height="24" rx="12" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="445.5" cy="304" r="2.6" fill="#ADB4BA"/><text x="454" y="307.5" font-size="10" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">Agent × LLM</text>
+  <rect x="218" y="292" width="97" height="24" rx="12" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="233.5" cy="304" r="2.6" fill="#E28B74"/><text x="242" y="307.5" font-size="10" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">嵌入式工程师</text>
+  <rect x="324" y="292" width="77" height="24" rx="12" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="339.5" cy="304" r="2.6" fill="#ADB4BA"/><text x="348" y="307.5" font-size="10" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">游戏开发</text>
+  <rect x="410" y="292" width="100" height="24" rx="12" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)"/><circle cx="425.5" cy="304" r="2.6" fill="#ADB4BA"/><text x="434" y="307.5" font-size="10" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">DSH 插件作者</text>
 </g>
 
 <g transform="translate(752 0)"><rect x="0" y="22" width="104" height="23" rx="11.5" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.18)"/><circle cx="15.5" cy="33.5" r="2.6" fill="#DEE2E6"/><text x="24" y="36.5" font-size="8.5" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC','WenQuanYi Zen Hei',sans-serif" fill="#DAD5C8">OPEN TO COLLAB</text></g>

@@ -16,14 +16,14 @@
 
 ## 关于我
 
-> 我是 **玄安**，坐标上海。  
+> 我是 **玄安**，坐标上海。**嵌入式工程师**，业余喜欢折腾**游戏开发**。  
 > 从 C 指针一路折腾到 AI Agent —— 底层够硬，上层够野。
 
+- 🔧 **嵌入式**　C / C++ / 汇编：MQTT 客户端、TLS 实战、协议细节与性能
+- 🎮 **游戏开发**　业余做玩法原型与技术实验
 - 🔭 **正在构建**　DSH 插件生态 —— [梅花易数 MeiHuaYi](https://github.com/Sakura7301/MeiHuaYi) 已上架
 - 🧠 **长期折腾**　Multi-Agent / LLM 工程化，以及 `chatgpt-on-wechat` 生态
-- 🛠 **偶尔硬核**　C / C++ / 汇编：MQTT 客户端、TLS 实战、在线评测系统
 - ✍️ **学习笔记**　[Notes](https://github.com/Sakura7301/Notes) —— 134 ★ 的知识库
-- 💬 **信条**　　*I believe that technology makes dreams greater.*
 
 <sub>02 · STACK</sub>
 
@@ -52,6 +52,7 @@
 - 把 DSH 插件做到真正「开箱即用」——梅花易数之后，还在憋下一个
 - 啃 Agent 的工程化落地：记忆、工具调用、多智能体协作
 - 偶尔回到底层，写点 C：MQTT、TLS、协议细节与性能
+- 业余折腾游戏开发：玩法原型 + 引擎与工具链的小实验
 
 <sub>06 · CONTACT</sub>
 

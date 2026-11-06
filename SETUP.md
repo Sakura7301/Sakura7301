@@ -4,7 +4,7 @@
 > 全套素材（SVG 动效横幅、技术栈、作品卡、数据面板、页脚）都已生成好，直接上传即可。
 
 视觉语言：**水墨** —— 墨黑 / 宣纸白 / 银灰，只在印章处点一点朱砂。
-意象：头像（左侧）+ 北斗七星、远山云雾、飞鸟、朱砂闲章「人间世」。
+意象：头像（左侧）+ 北斗七星、远山云雾、飞鸟，一点朱砂做点缀。
 
 ---
 
@@ -98,7 +98,7 @@ git push -u origin main
 | 文件 | 作用 |
 | --- | --- |
 | `README.md` | 主页本体（文字排版、链接、章节） |
-| `assets/hero.svg` | 首屏横幅：水墨夜色 + 远山云雾 + 北斗七星 + 飞鸟 + 头像（左侧圆形）+ 朱砂闲章 |
+| `assets/hero.svg` | 首屏横幅：水墨夜色 + 远山云雾 + 北斗七星 + 飞鸟 + 头像（左侧圆形） |
 | `assets/avatar.jpg` | 头像原图（会被内嵌进 hero.svg，见下方说明） |
 | `assets/stack.svg` | 技术栈（语言 / 工具 / 方向三行胶囊） |
 | `assets/projects.svg` | 精选作品 6 张卡片（带 Star 数、语言、标签） |
@@ -128,8 +128,7 @@ git add . && git commit -m "update profile" && git push
 | 换头像 | 直接覆盖 `assets/avatar.jpg`（正方形，建议 ≥ 320×320），再运行脚本 |
 | 配色（墨 / 纸 / 银 / 朱砂） | 顶部 `const C = { ... }` |
 | 首屏文案：名字、英文名、诗句、三个小标签 | `buildHero()` 里的 `<text>` 与 `items` 数组 |
-| 朱砂印章（现在是「人间世」） | `buildHero()` 里 `<g transform="translate(232 108)...">` 那段 |
-| 头像圆窗位置/大小 | `buildHero()` 顶部 `const av = { x, y, r }` |
+| 头像位置/大小 | `buildHero()` 顶部 `const av = { x, y, r }` |
 | 北斗七星的形状与位置 | `buildHero()` 里的 `bowl` / `handle` 坐标 |
 | 远山形状 / 云雾 | `landscape()` |
 | 「精选作品」展示哪 6 个仓库 | `FEATURED` 数组（按仓库名回填真实 Star 数） |
@@ -145,6 +144,7 @@ git add . && git commit -m "update profile" && git push
 ## 7. 小贴士 & 常见问题
 
 - **头像为什么是内嵌的**：GitHub 把 README 里的 SVG 当图片加载，SVG 内部的**外链图片不会加载**，所以头像是以 base64 直接内嵌进 `hero.svg` 的（约 +30KB，无影响）。换头像 = 换 `assets/avatar.jpg` + 重跑一次脚本。
+- **首屏三个小标签**（嵌入式工程师 / 游戏开发 / DSH 插件作者）在 `buildHero()` 的 `items` 数组里；「关于我」的自我介绍在 `buildReadme()`。
 - **动效是真的**：北斗星呼吸、墨屑浮动、分隔线光点流动、云雾缓慢漂移 —— 全部是 SVG 内部动画，不需要 JS。
 - **推荐暗色模式**：整套水墨是为 GitHub Dark 调的；浅色模式下会看到深色画面浮在白底上。
 - **手机端**：横幅按 880px 设计，手机上会等比缩小，文字会偏小 —— 图片型主页的通病。
