@@ -265,11 +265,6 @@ function buildHero(d) {
     px += p.width + 9;
   }
 
-  const collab = pill(0, 22, 'OPEN TO COLLAB', {
-    dot: C.silver, h: 23, fs: 8.5, fill: 'rgba(255,255,255,0.05)', stroke: 'rgba(255,255,255,0.18)', color: C.sub,
-  });
-  const collabX = W - 24 - collab.width;
-
   const inner = `
 <g class="wash">
   <ellipse class="au a1" cx="820" cy="20" rx="240" ry="150" fill="url(#washCool)"/>
@@ -307,8 +302,6 @@ ${landscape(W, H)}
   <text x="218" y="276" font-family="${F.mono}" font-size="9" letter-spacing="1.6" fill="${C.dim}">— 庄子</text>
   ${pills.join('\n  ')}
 </g>
-
-<g transform="translate(${collabX} 0)">${collab.svg}</g>
 
 <g stroke="rgba(243,239,228,0.30)" stroke-width="1.1" fill="none" stroke-linecap="round">
   <path d="M17 34 V17 H34"/>
@@ -603,14 +596,14 @@ function buildReadme(d) {
 
 ## 关于我
 
-> 我是 **${d.user.name}**，坐标${d.user.location === 'ShangHai' ? '上海' : d.user.location}。**嵌入式工程师**，业余喜欢折腾**游戏开发**。  
-> 从 C 指针一路折腾到 AI Agent —— 底层够硬，上层够野。
+> 我是 **${d.user.name}**，坐标${d.user.location === 'ShangHai' ? '上海' : d.user.location}。嵌入式工程师，业余写点游戏。  
+> 平时写 C / C++，最近在折腾 Agent 和插件。
 
-- 🔧 **嵌入式**　C / C++ / 汇编：MQTT 客户端、TLS 实战、协议细节与性能
-- 🎮 **游戏开发**　业余做玩法原型与技术实验
-- 🔭 **正在构建**　DSH 插件生态 —— [梅花易数 MeiHuaYi](https://github.com/${d.user.login}/MeiHuaYi) 已上架
-- 🧠 **长期折腾**　Multi-Agent / LLM 工程化，以及 \`chatgpt-on-wechat\` 生态
-- ✍️ **学习笔记**　[Notes](https://github.com/${d.user.login}/Notes) —— ${topStars} ★ 的知识库
+- 🔧 **嵌入式**　C / C++ / 汇编，常和协议、性能打交道
+- 🎮 **游戏开发**　业余做点玩法原型和小实验
+- 🔭 **在折腾**　DSH 插件 —— [梅花易数 MeiHuaYi](https://github.com/${d.user.login}/MeiHuaYi) 已上架
+- 🧠 **也在看**　Agent / LLM 工程化，以及 \`chatgpt-on-wechat\` 生态
+- ✍️ **笔记**　[Notes](https://github.com/${d.user.login}/Notes) · ${topStars} ★
 
 <sub>02 · STACK</sub>
 
@@ -636,10 +629,10 @@ function buildReadme(d) {
 
 ## 最近在忙
 
-- 把 DSH 插件做到真正「开箱即用」——梅花易数之后，还在憋下一个
-- 啃 Agent 的工程化落地：记忆、工具调用、多智能体协作
-- 偶尔回到底层，写点 C：MQTT、TLS、协议细节与性能
-- 业余折腾游戏开发：玩法原型 + 引擎与工具链的小实验
+- 把梅花易数插件再打磨一下，下一个插件还在想
+- 看看 Agent 的记忆、工具调用这些工程问题
+- 偶尔回到底层写点 C：MQTT、TLS、协议细节
+- 业余做点游戏原型
 
 <sub>06 · CONTACT</sub>
 
@@ -647,11 +640,9 @@ function buildReadme(d) {
 
 <div align="center">
 
+📮 <a href="mailto:sakuraduck@foxmail.com">sakuraduck@foxmail.com</a>
+
 <a href="https://github.com/${d.user.login}">GitHub</a> · <a href="https://github.com/${d.user.login}/MeiHuaYi">MeiHuaYi</a> · <a href="https://github.com/${d.user.login}/Notes">Notes</a> · <a href="https://github.com/${d.user.login}/sakuraTools">sakuraTools</a> · <a href="https://github.com/${d.user.login}/OnlieProgrammingServer">OnlieProgrammingServer</a>
-
-<br /><br />
-
-<sub>如果这些项目帮到了你，欢迎点个 ⭐ —— 这是最直接的鼓励。</sub>
 
 </div>
 
